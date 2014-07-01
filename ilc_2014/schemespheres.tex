@@ -1,0 +1,125 @@
+\documentclass{acm_proc_article-sp}
+
+\begin{document}
+
+\title{Multiplatform and mobile app development in Scheme with Gambit/SchemeSpheres}
+%\subtitle{[Tutorial abstract]}
+
+\numberofauthors{1} %  in this sample file, there are a *total*
+\author{
+\alignauthor
+Álvaro Castro-Castilla\\
+       \affaddr{Fourthbit}\\
+       \affaddr{Madrid, Spain}\\
+       \email{alvaro.castro.castilla@fourthbit.com}
+}
+\date{22 May 2014}
+
+\maketitle
+\begin{abstract}
+
+This document explains the motivation and fundamental ideas behind the SchemeSpheres\footnote{The project was initiatied by Fourthbit, and comprises code by many authors. Project homepage: http://schemespheres.org} project. It outlines the conceptual approach taken by this framework, given a set of requirements that are considered essential. The different sides of the key aspects that SchemeSpheres tackles are summarized, focusing especially on the set of tools supporting multiplatform/mobile app development that it provides.
+
+Current implementation supports most of the required functionality, which will be explored along with the process of building an example app. Limitations of the framework will be discussed during the tutorial, exploring possible future solutions as well current workarounds.
+
+\end{abstract}
+
+% A category with the (minimum) three required fields
+\category{D.2.7}{Software Engineering}{Distribution, Maintenance, and Enhancement}
+%A category including the fourth, optional field follows...
+\category{D.2.m}{Software Engineering}{Miscellaneous}[rapid prototyping, reusable software]
+
+\terms{Design, Documentation, Experimentation, Languages}
+
+\keywords{Scheme, Gambit, multiplatform and mobile development, workflow automation, software construction} % NOT required for Proceedings
+
+
+\section{Introduction}
+
+%Move1: Outlining / promoting / problematizing
+Implementation fragmentation and diversity have been a long-standing attributes of the Scheme community. \textit{Scheme Now!}, \textit{Eggs}, \textit{PLaneT} are the most prominent proposals aiming at defining a package specification for shared code, as well as centralizing packages in common repository. Specially the case of \textit{Scheme Now!}, which has been developed with the intention of serving as a cross-implementation system, and might be seen as an approach to the fragmentation problem. Most other package systems aim at solving the distribution and sharing problem for a specific implementation and Scheme ecosystem.
+
+%Move2: Justifying this particular piece of study/research
+With the advent of mobile technologies, complexity grows as the problem becomes not only of distribution, but of multiple software construction workflows. Building, debugging and deploying code for mobile platforms vary wildly in aspects such as the platform's SDK API language and project structure. Moreover, mobile platforms usually involve very particular toolchains that are rapidly evolving over time. With these new added complexities, it becomes particularly hard to make an all-in-one solution that becomes sufficiently accepted by the community. It is even more challenging if it's supposed to work for a wide range of Scheme systems seamlessly.
+
+Taking these issues into account, the main motivation behind SchemeSpheres is to provide a framework for software construction targeting multiple platforms, including mobile. This functionality is similar to what package systems and central repositories provide, but more emphasis is placed on the application construction workflow. Consequently, SchemeSpheres is focused on the project setup, dependency handling, and construction cycle. It is sufficiently flexible to allow the Scheme developer to choose the right libraries and design the application architecture freely, thus preserving handling complete control to the final user. To make this possible, a working framework should provide the following key features:
+
+\begin{itemize}
+  \item Project construction automation, in all development platforms, for the different targets available in each.
+  \item Project structure templates and build processes for all platforms, without hiding the details and allowing full customization per-project.
+  \item Dependency handling and some form of package specification, so the system favours reusability and code sharing.
+  \item A common documentation system, manuals and guides.
+  \item Additionally, a set of libraries that supports most common needs for all target platforms.
+\end{itemize}
+
+
+\section{SchemeSpheres framework}
+
+%Move 3: Methodological, demographic, or procedural comments. Approach.
+\subsection{Requirements}
+
+In addition to the key features previously mentioned, the system should provide a solution to a number of issues that can be considered orthogonal to these. Namely, a Scheme framework with the purpose explained above needs to solve some aspects that are not part of the language standard nor considered commonplace among implementations.
+
+\begin{enumerate}
+  \item Complete control over the workflow and build process, as opposed to a black-box model of compilation where the user obtains a library/executable without access to object files or generated code.
+  \item An R5RS+ Scheme compiler that can generate native or portable C code for the target platforms. Preferably, it should provide a more general backend that can eventually support compilation to other languages as well, opening the possibility of accessing certain platforms SDKs directly without bridging technologies such as JNI.
+  \item Support for syntax-rules. Several SRFIs require this macro system, not always readily available in Scheme implementations.
+  \item Support for low-level macros (\textit{define-macros}/\textit{syntax-case}/\textit{rsc-macro-transformer}) for very specific, but important, cases.
+  \item Avoid name clashes through a modules system, namespaces or names convention.
+\end{enumerate}
+
+Some of these are solved by the Gambit compiler; others are addressed by SchemeSpheres or customized third-party libraries (like macros and modules).
+
+\subsection{Approach}
+
+SchemeSpheres is built upon the Gambit Scheme compiler. This compiler has been chosen for its backend capabilities, performance and versatility. Being an R5RS implementation without full syntax-rules integration, it requires the SchemeSpheres system to provide it. The approach proposed by this framework on top of Gambit is divided into three fronts:
+
+\begin{description}
+  \item Hygienic macros expansion, modules and conditional compilation.
+These features must be usually solved together, as they all transform the code at compile-time. Many compilers, as is the case with Gambit, leave hygienic macros and related syntax expansion to the user implementation.
+
+  \item Workflow tool-chain.
+    This is perhaps the most distinctive feature of SchemeSpheres in comparison with package systems. Essentially, the framework provides a set of tools for creating workflows, instead of forcing the user through a generic one. The workflow is divided into three parts: \textbf{project skeleton generation}, \textbf{task running}, and \textbf{dependency management}. These are handled currently by three tools:
+    \begin{itemize}
+      \item \textbf{Sfusion} scaffolds out a new application, writing the Ssake configuration and pulling in relevant Ssake tasks and dependencies that you might need for your build.
+      \item \textbf{Ssake} is used to build, preview and test your project, thanks to help from tasks provided by the SchemeSpheres project for automating the workflow.
+      \item \textbf{Sspheres} is used for installing dependencies from a curated set of modules and packages (called \textit{spheres}, so the user can easily bring compatible code into an existing project.
+    \end{itemize}
+
+  \item Ecosystem.
+The set of aspects that help SchemeSpheres build community and collaboration around the project. Such a project benefits from the contribution of any Scheme developer that may desire to, so it must be prepared to integrate modules, tests, generators and tasks. The main points that fall under this category are:
+    \begin{itemize}
+      \item An structuration and set of curated modules into Spheres, with common and uniform functionality (such as FFI, ...)
+      \item Documentation of the internal workings, plus extensions capabilities.
+      \item A central repository.
+    \end{itemize}
+\end{description}
+
+
+\section{Tutorial: Example app}
+
+The tutorial will explain the process of building an example application for various targets using OpenGL/ES graphics and the SDL library for application setup. The process will be divided into the following steps:
+
+\begin{enumerate}
+  \item Set up a new host OS application. This will generate the base skeleton of application. Prototype functionality in the host OS.
+  \item Add support for Android. Conditionally compiled code for mobile (currently only affecting Android). App deployment.
+  \item Add support for iOS. Conditionally compile code only for iOS. App deployment.
+  \item Appendix. Extending SchemeSpheres: Ssake tasks and Sfusion generators.
+\end{enumerate}
+
+
+\section{Conclusions and Roadmap}
+
+%Move 4: Summarizing the main findings. HOW TO DO:
+%Move 5: Highlighting its outcome/results
+%Move 6: Further observations (implications, limitations, future developments)
+This tutorial shows the current state of the tools that SchemeSpheres facilitates to the Scheme developer and how they may be used in the software construction process. As an organically growing software project, many parts will probably evolve substantially. The next natural steps for this frameworks will be:
+
+\begin{itemize}
+  \item Improving syntax expansion integration with Gambit.
+  \item Full modules support.
+  \item Project generators for the JavaScript/HTML5 target.
+\end{itemize}
+
+\balancecolumns
+\end{document}
