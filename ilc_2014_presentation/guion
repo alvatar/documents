@@ -1,0 +1,95 @@
+# 0. Overview of the talk
+
+# 1. Intro
+
+
+==> min 5
+
+
+# 2. Gettings Started
+
+  ## 2.1 Origin of the project
+  ## 2.2 Additionally
+  ## 2.2 Requirements
+     * As opposed to a black-box model of compilation where the user obtains a library/executable without access to object files or generated code.
+     * Universal backend. Shared objects, loadable objects, source code...
+     * SRFIs, lots of community code
+     * i.e. FFI generation, system-aware code generation
+  ## In summary
+  
+
+==> min 20
+
+
+# 3. Tutorial
+
+  ## 3.1 Installation
+  ## 3.2 Interactive REPL (examples)
+  ## 3.3 Macros
+  ## 3.4 Debugging
+
+
+==> min 45
+
+# 4. Building applications for Linux / OSX
+
+  ## 4.1 Text application
+     * sfusion
+     * minimal
+  ## 4.2 ssake tasks
+     * ssake 
+     * ssake host:run (explain)
+     * ssake host:compile (explain)
+  ## 4.3 adding dependencies
+     * config.scm (explain needs and different aspects considered)
+     * include
+     * prelude
+     * load
+     * cc-options
+     * ld-options
+  ## 4.4 spheres typical tasks
+     * fabric
+  ## 4.5 Useful Spheres for creating applications
+     * TODO
+  ## 4.6 SDL/OpenGL application
+     * sdl-opengl-minimal
+     * FFI example
+
+==> min 80
+
+# 5. Building apps for Android / iOS
+
+  ## 5.1 Porting a simple app: text-based app on Android
+     * build and test
+     * how it works? inspect sakefile
+     * how it works? micro templates in jni-generator/src/Android.mk.sct
+     * cond-expand for conditional compilation
+     * test in text-based app
+  ## 5.2 Developing from the ground up: SDL / OpenGL(ES) app on iOS
+     * Introduction: application blocks (MAKE GRAPHIC)
+     * The three elements:
+     * sakefile.scm
+     * config.scm
+     * cond/expands in code
+  ## 5.3 The development process (host)
+     * Run the app host:run (see expansions and dependencies)
+     * Compile the app host:compile (see expansions and dependencies)
+  ## 5.4 The development process (mobile)
+     * What means interactive development?
+     * Emacs vs. terminal
+     * Running and updating remotely
+     * Updating vs. evaluation
+     * Updating the world live!
+  ## 5.5 Deploying as a monolithic app
+  ## 5.6 Advanced 
+     * Thread inspection
+     * fusion iOS utilities (iOS device detection)
+     
+
+==> min 105
+
+
+Q&A
+
+
+==> min 120
