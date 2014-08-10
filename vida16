@@ -1,0 +1,44 @@
+Descripción conceptual del proyecto
+===================================
+
+
+Moved es la desaparición de la tecnología ubicua en la era del chip invisible. Moved es la sutil y peligrosa poética de un mundo monitorizado al nanómetro. Es la vida expuesta al momento amplificado, a la percepción artificial y la manipulación digital.
+
+En un momento de victoria de tecnología sobre sociedad, la sensibilidad no es dominio del individuo, sino de la máquina. La sensibilidad es un parámetro de sensores. El objeto natural es sometido, es un objeto digital y sujeto a las reglas de lo codificado. Cada instante es un incremento de bits contadores, convertido en un flujo de datos. Imposibles de capturar fuera de la mente artificial de un hardware computacional, nos vemos limitados a ser meros espectadores del deep learning. Y es así, asumiendo nuestra incapacidad para comprender la realidad sin abstracción, que el ordenador nos permite ver a través de sus ojos hipersensibles, en múltiples dimensiones, en cientos de hertzios.
+
+
+
+
+Resumen del proyecto
+====================
+
+Moved es un una pieza de vida natural amplificada, percibido por unos ojos artificiales e hipersensibles. Es el tiempo expandido y el espacio nanométrico del sensor electrónico que observa la vida de apariencia estática pero en vertiginoso movimiento.
+
+
+
+
+
+
+Descripción técnica general
+===========================
+
+El reto técnico de 'Moved' reside en la capacidad de capturar datos espacio-temporales de extrema precisión. Este problema es similar al que resuelven los dispositivos de captura de movimiento (MoCap) empleados en la industria cinematográfica, videojuegos y de efectos visuales. Sin embargo, los requerimientos técnicos de la pieza demandan una tecnología superior a la inmediatamente disponible en los sistemas comerciales actuales.
+
+Es aquí donde PhaseSpace nos permite alcanzar las precisión espacio-temporal requerida, gracias a una solución alternativa: el motion capture mediante técnicas ópticas. En contraposición a las técnicas tradicionales por radio, esta tecnología ofrece mucha más precisión en la captura, así como una reducción drástica del número de errores que se producen en el proceso (algo muy habitual en el MoCap tradicional, que hace necesario el procesamiento 3d manual). Esto hace posible Moved, permitiéndonos capturar cada imperceptible movimiento de cada hoja de cada planta, el más delicado desplazamiento en el instante más breve.
+
+La instalación 'Moved' consta de 3 elementos diferenciados, descritos a continuación:
+
+- Instalación Invernadero: Es la parte variable de la instalación, permitiendo su adaptación a distintos espacios y posibilidades físicas. En sus diversos formatos, comparten una serie de características comunes. En primer lugar, son espacios cúbicos delimitados visualmente. En segundo lugar, una estructura ligera metálica genera un espacio transitable en el que se pueden colocar los contenedores con las diversas especies de plantas. Estas estructuras deben ser lo más livianas e imperceptibles que sea posible, intentando desaparecer del espacio y dejando el protagonismo al elemento principal: las plantas. Estas se sitúan en contenedores adecuados para el cultivo hidropónico, facilitando su mantenimiento. El aspecto más crucial para el funcionamiento de la pieza es que las plantas sean muy sensibles al movimiento del aire, ya que será la principal causa de variación en las posiciones de los sensores de captura.
+
+- Sistema PhaseSpace de captura: este sistema es el elemento clave de la instalación, adaptado especialmente para las necesidades del proyecto. El sistema consta de:
+• Cámaras: son de alta resolución (12 Mpx) y ultra alta velocidad (960Hz), empleadas para la triangulación de los marcadores LED en tiempo real. Dimensiones: 108 mm x 83 mm x 57 mm. Peso: 380 gramos. Latencia: 2 fotogramas en llegar al servidor. Ángulo de visión: 60 grados.
+• Unidades de control de LEDs. Según el lugar/tamaño de la instalación el número de controladores de LEDS varía entre 1 y 4.
+• LEDs: se colocan en las plantas y sirven de referencia para la captura por parte del sistema.
+• Un HUB de conexión de cámaras: las cámaras se conectan a este dispositivo, el cuál entrelaza las distintas señales y envía una sola al sistema del servidor. Dimensiones: 126 mm x 70 mm x 25 mm. Peso: 90 gramos.
+• Un servidor Linux que se comunica con el HUB de cámaras. Dimensiones: 448 mm x 178 mm x 454 mm. Peso: 10.7 kg
+
+El sistema tiene un procedimiento de montado muy específico y debe ser realizado por especialistas. Para ello, además de los elementos descritos, consta de piezas necesarias para el calibrado que no forman parte de la instalación. El aspecto más importante es la colocación de cámaras, que debe ser realizado in-situ mediante un sofware de calibrado, siguiendo una disposición circular alrededor del espacio monitorizado.
+
+- Sistema de Procesamiento y Visualización de la Información: el software de procesamiento se basa en una arquitectura cliente/servidor. El software servidor reside en el sistema PhaseSpace, que dispone de un hardware con diversas salidas Ethernet a las que se conecta el hardware de visualización. Este servidor envía un streaming de paquetes TCP/IP que son capturados por el sistema de procesamiento visual. Una vez capturados los datos y ya dentro del cliente, comienza el trabajo de procesamiento y visualización. El primer problema es resuelto mediante una red de Deep Learning que procesa la información y proyecta los datos sobre un espacio de menor número de dimensiones, haciendo posible su proyección tridimensional. Estos datos son constantemente actualizados y re-proyectados, lo que produce el efecto visual de una transformación en el tiempo característica de las imágenes generadas. A continuación, con lo datos procesados, el siguiente componente de software es el 'visualizador', que recibe y procesa visualmente la información en tiempo real. Esta transformación es computacionalmente intensa (se realiza en parte en la GPGPU), y permite al observador adquirir una noción intuitiva -y matemáticamente correcta- del enorme flujo de datos que están siendo procesado por el sistema en su conjunto.
+El software de visualización usa la tecnología OpenGL de programación de gráficos, así como un conjunto de bibliotecas dinámicas propietarias para poder comunicarse correctamente con PhaseSpace
+
