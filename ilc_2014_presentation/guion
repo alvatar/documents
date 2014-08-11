@@ -24,7 +24,8 @@
 # 3. Tutorial
 
   ## 3.1 Installation
-  ## 3.2 Interactive REPL (examples)
+  ## 3.2 Interactive REPL for local and remote development
+     * examples
   ## 3.3 Macros
   ## 3.4 Debugging
 
@@ -47,15 +48,11 @@
      * load
      * cc-options
      * ld-options
-  ## 4.4 spheres typical tasks
-     * fabric
-  ## 4.5 Useful Spheres for creating applications
-     * TODO
-  ## 4.6 SDL/OpenGL application
+  ## 4.4 SDL/OpenGL application
      * sdl-opengl-minimal
      * FFI example
 
-==> min 80
+==> min 60
 
 # 5. Building apps for Android / iOS
 
@@ -81,12 +78,19 @@
      * Updating vs. evaluation
      * Updating the world live!
   ## 5.5 Deploying as a monolithic app
-  ## 5.6 Advanced 
+     * how it works? cond-expand / sakefile
+  ## 5.6 Development utilities
      * Thread inspection
      * fusion iOS utilities (iOS device detection)
      
 
-==> min 105
+==> min 90
+
+
+# 6. Appendix
+
+  ## 6.1 Spheres
+  ## 6.2 Inside a sphere
 
 
 Q&A

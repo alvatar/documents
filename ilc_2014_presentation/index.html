@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Gambit/SchemeSpheres | ILC 2014</title>
+    <title>Gambit / SchemeSpheres | ILC 2014</title>
 
     <meta name="description" content="Multiplatform and Mobile App Development in Scheme with Gambit/SchemeSpheres">
     <meta name="author" content="Álvaro Castro-Castilla">
@@ -44,7 +44,7 @@
       <div class="slides">
 	<section>
 	  <h3>Multiplatform and Mobile<br />App Development in Scheme<br /> with</h3>
-          <h2><strong><a href="http://schemespheres.org">Gambit/SchemeSpheres</a></strong></h2>
+          <h2><strong><a href="http://schemespheres.org">Gambit / SchemeSpheres</a></strong></h2>
           <br />
           <p><small>Álvaro Castro-Castilla <a href="https://twitter.com/alvatarc">@alvatarc</a><br /><a href="http://fourthbit.com">Fourthbit</a></small></p>
 	</section>
@@ -116,8 +116,8 @@
           <h3>the potential of...</h3>
           <ol>
             <li>providing <strong>self-contained</strong> set of libraries and standard SRFIs</li>
-            <li><strong>integrating</strong> mobile platforms and desktop platforms development</li>
-            <li><strong>exposing</strong> Gambit's facilities and flexibility for the development process</li>
+            <li><strong>integrating</strong> mobile and desktop platforms development</li>
+            <li>while <strong>exposing</strong> Gambit's facilities and flexibility</li>
           </ol>
         </section>
         
@@ -155,12 +155,11 @@
           <h2>What makes it possible with SchemeSpheres?</h2>
           <h3>the project is divided into</h3>
           <ul>
-            <li>Hygienic macros expansion, modules and conditional compilation</li>
+            <li>Hygienic macro expansion, modules and conditional compilation</li>
             <li>Workflow tool-chain (<strong>sfusion</strong>, <strong>ssake</strong>, <strong>sspheres</strong>)</li>
             <li>Ecosystem (<strong>libraries</strong>, <strong>documentation</strong>)</li>
           </ul>
         </section>
-
 
         <section data-background="#f97e7e">
           <h2>Let's get our first taste of SchemeSpheres</h2>
@@ -175,16 +174,17 @@
         
         <section data-background="#becd9a">
           <h2>Installation</h2>
-          <h3><a href="http://www.schemespheres.org/guides/en/quickstart">Getting started guide</a></h3>
+          <h3><a href="http://www.schemespheres.org/guides/en/quickstart" target="_blank">Getting started guide</a></h3>
         </section>
 
         <section data-background="#becd9a">
           <h2>Interactive REPL</h2>
-          <h3>Currying</h3>
+          <h3>Basic example: Currying</h3>
           <pre><code data-trim contenteditable>
 ;; Currying
 (##spheres-load core: functional)
 
+;; at this point, the functions from (core: functional) are available
 (define addtwo (curry + 2))
 (addtwo 7)
 </code></pre>
@@ -192,11 +192,12 @@
 
         <section data-background="#becd9a">
           <h2>Installing more Spheres</h2>
-          <h3><a href="http://www.schemespheres.org/spheres">Spheres listing</a></h3>
+          <h3><a href="http://www.schemespheres.org/spheres" target="_blank">Spheres listing</a></h3>
           <pre><code data-trim contenteditable>
 sudo sspheres install fabric
 
-# To install OpenGL and SDL2, you need the C libraries in the system
+# To install OpenGL and SDL2, you need the C libraries in the system.
+# In OS X:
 brew install sdl2 sdl2_image sdl2_mixer sdl2_net sdl2_ttf glew
 sudo sspheres install opengl sdl2
 </code></pre>
@@ -204,21 +205,26 @@ sudo sspheres install opengl sdl2
 
         <section data-background="#becd9a">
           <h2>Interactive REPL</h2>
-          <h3>Random sampling and selection</h3>
+          <h3>Deeper dependencies example</h3>
           <pre><code data-trim contenteditable>
-;; Random sampling and selection
+;; Random sampling and selection (fabric: algorithm/random)
+;; Loading the module automatically loads the dependency tree as well
 (##spheres-load fabric: algorithm/random)
 
-(random-pick '(1 2 3 4 5 6))
+;; at this point, the functions are available
+(random-pick '(a b c d e f))
+(random-extract '(a b c d e f))
+(random-sample 2 '(a b c d e f))
 </code></pre>
         </section>
 
         <section data-background="#becd9a">
           <h2>Interactive REPL</h2>
-          <h3>SDL / Opengl</h3>
+          <h3>Foreign dependencies example: SDL / Opengl</h3>
           <pre><code data-trim contenteditable>
-;; SDL/OpenGL
+;; SDL
 (##spheres-load sdl2: sdl2)
+;; OpenGL
 (##spheres-load opengl: gl)
 
 (SDL_Init 0)
@@ -227,23 +233,6 @@ sudo sspheres install opengl sdl2
 (glGetString GL_VERSION)
 (*->string #)
 </code></pre>
-        </section>
-
-        <section data-background="#becd9a">
-          <h2>More Spheres</h2>
-          <h3>TODO</h3>
-          <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
         </section>
 
         <section data-background="#becd9a">
@@ -281,6 +270,10 @@ sudo sspheres install opengl sdl2
         </section>
 
         <section data-background="#becd9a">
+          <h2>Things to take<br /> into account<br />in the REPL...</h2>
+        </section>
+
+        <section data-background="#becd9a">
           <h3>code changes introduced by the macro expander</h3>
           <ol>
             <li>explicit <strong>let to lambda</strong> expansion</li>
@@ -311,30 +304,31 @@ sudo sspheres install opengl sdl2
         </section>
 
         <section data-background="#becd9a">
-          <h2>Debugging MORE TODO</h2>
-        </section>
+          <h2>cond-expand</h2>
+          <h3>should be declared manually</h3>
+          <pre><code data-trim contenteditable>
+(##spheres-include core: base-macros)
 
+;; Witout any added expansion feature
+(cond-expand
+ (my-condition
+  (display "my-condition is met\n"))
+ (else
+  (display "no condition is met\n")))
 
-        <section data-background="#becd9a">
-          <h2>Inspecting threads</h2>
-<pre><code data-trim contenteditable>
-(##spheres-load energy: inspect)
+;; After adding "my-condition" expansion feature
+(add-cond-expand-feature! my-condition)
 
-(thread-start!
- (make-thread
-  (lambda ()
-    (define a 1234567890987654321)
-    (let recur ((a a))
-      (if (= 0 a)
-          'bye
-          (recur (- a 2)))))))
-
-(inspect-thread #2)
+(cond-expand
+ (my-condition
+  (display "my-condition is met\n"))
+ (else
+  (display "no condition is met\n")))
 </code></pre>
         </section>
-        
+
         <section data-background="#becd9a">
-          <h3>Macro definition/expansion <br />errors in REPL</h3>
+          <h3>Macro definition / expansion <br />errors in REPL</h3>
 <pre><code data-trim contenteditable>
 (let (()) 'a)
 
@@ -353,14 +347,167 @@ sudo sspheres install opengl sdl2
 </pre>
         </section>
 
+
+
+
+
         <!-- SECTION 4 -->
 
 
-        <section data-background="#ffcb87">
+
+
+
+        <section data-background="#febdff">
           <h1>Building<br /> applications<br /> Linux / OSX</h1>
         </section>
 
+        <section data-background="#febdff">
+          <h1>Tutorial:<br /> minimal</h1>
+          <h2>project</h2>
+        </section>
+
+        <section data-background="#febdff">
+          <h2>Sfusion</h2>
+          <p>Usage</p>
+        </section>
+
+        <section data-background="#febdff">
+          <h2>Creating a <strong>minimal</strong> project</h2>
+        </section>
+
+        <section data-background="#febdff">
+          <h2>Ssake</h2>
+          <p>Usage</p>
+        </section>
+
+        <section data-background="#febdff">
+          <h2>common tasks</h2>
+          <ul>
+            <li>ssake</li>
+            <li>ssake host:run</li>
+            <li>ssake host:compile</li>
+          </ul>
+        </section>
+
+        <section data-background="#febdff">
+          <h2>Adding dependencies</h2>
+          <h3>config.scm</h3>
+          <table>
+            <tr>
+              <td><strong>include</strong></td>
+              <td>use</td>
+            </tr>
+            <tr>
+              <td>prelude</td>
+              <td>use</td>
+            </tr>
+            <tr>
+              <td><strong>load</strong></td>
+              <td>use</td>
+            </tr>
+            <tr>
+              <td>cc-options</td>
+              <td>use</td>
+            </tr>
+            <tr>
+              <td>ld-options</td>
+              <td>use</td>
+            </tr>
+          </table>
+        </section>
+
+        <section data-background="#febdff">
+          <h1>Tutorial: <br />SDL / OpenGL</h1>
+          <h2>project</h2>
+        </section>
+
+        <section data-background="#febdff">
+          <h2>Creating a<br /> minimal <strong>SDL / OpenGL</strong> project</h2>
+        </section>
+
+        <section data-background="#febdff">
+          <h2>Inside the project</h2>
+          <ul>
+            <li>config.scm</li>
+            <li>sakefile.scm</li>
+          </ul>
+        </section>
+
+        <section data-background="#febdff">
+          <h2><strong>Foreign</strong> Function<br /> Interface <br /> and<br /> <strong>memory</strong> management</h2>
+        </section>
+
+        <section data-background="#febdff">
+          <pre><code data-trim contenteditable>
+(let ((mode* (alloc-SDL_DisplayMode))) ; <--- allocate an SDL_DisplayMode
+    (when (< (SDL_Init SDL_INIT_VIDEO) 0) (fusion:error "Couldn't initialize SDL!"))
+    (SDL_GetDisplayMode 0 0 mode*)
+    (let* ((screen-width (SDL_DisplayMode-w mode*))
+           (screen-height (SDL_DisplayMode-h mode*))
+           (window (SDL_CreateWindow
+                    "SDL/GL" SDL_WINDOWPOS_CENTERED SDL_WINDOWPOS_CENTERED screen-width screen-height
+                    (bitwise-ior SDL_WINDOW_OPENGL SDL_WINDOW_RESIZABLE))))
+      (let ((event (alloc-SDL_Event)) ; <--- allocate an SDL_Event
+            (ctx (SDL_GL_CreateContext window)))
+        (let recur ((iteration 0))
+          (SDL_PollEvent event)
+          (glClear (bitwise-ior GL_COLOR_BUFFER_BIT GL_DEPTH_BUFFER_BIT GL_STENCIL_BUFFER_BIT))
+          (SDL_GL_SwapWindow window)
+          (unless (= SDL_QUIT (SDL_Event-type event))
+                  (recur (++ iteration))))))) ; <--- leave and release both
+          </code></pre>
+        </section>
+
+        <section data-background="#febdff">
+          <h2>Moving to mobile...</h2>
+        </section>
+
+
+
+
+        <!-- SECTION 5 -->
+
+
+
+        
         <section data-background="#ffcb87">
+          <h1>Building Apps<br />Android / iOS</h1>
+        </section>
+
+        <section data-background="#ffcb87">
+          <h1>Tutorial:<br /> compilation</h1>
+          <h2>for mobile platforms</h2>
+        </section>
+
+        <section data-background="#ffcb87">
+          <h2>Building and Running the app</h2>
+        </section>
+
+        <section data-background="#ffcb87">
+          <h2>How it works?</h2>
+          <h4><strong>sakefile</strong> tasks</h3>
+          <h4><strong>templates</strong> and text file generation</h4>
+          <h4><strong>cond-expand</strong> features</h4>
+        </section>
+
+        <section data-background="#ffcb87">
+          <h1>Tutorial:<br /> mobile <br />interactive</h1>
+          <h2>development</h2>
+        </section>
+
+        <section data-background="#ffcb87">
+          <h2>The three elements</h2>
+          <h3>summing up</h3>
+        </section>
+
+        <section data-background="#ffcb87">
+          <h3><strong>sakefile</strong>.scm</h3>
+          <h3><strong>config</strong>.scm</h3>
+          <h3><strong>cond-expand</strong> features</h3>
+        </section>
+
+        <section data-background="#ffcb87">
+           <h2>Creating an <strong>SDL / OpenGL</strong> project</h2>
         </section>
 
         <section data-background="#ffcb87">
@@ -391,24 +538,133 @@ sudo sspheres install opengl sdl2
         </section>
 
         <section data-background="#ffcb87">
+          <h2>Inspecting threads</h2>
+<pre><code data-trim contenteditable>
+(##spheres-load energy: inspect)
+
+(thread-start!
+ (make-thread
+  (lambda ()
+    (define a 1234567890987654321)
+    (let recur ((a a))
+      (if (= 0 a)
+          'bye
+          (recur (- a 2)))))))
+
+(inspect-thread #2)
+</code></pre>
         </section>
 
         <section data-background="#ffcb87">
         </section>
 
-        <section data-background="#ffcb87">
+        <!-- APPENDIX -->
+
+        <section data-background="#becd9a">
+          <h1>More Spheres</h1>
         </section>
 
-        <section data-background="#ffcb87">
+        <section data-background="#becd9a">
+          <h2>Core Sphere</h2>
+          <ul>
+            <li>Assert</li>
+            <li>Base macros (SRFIs and general use macros)</li>
+            <li>FFI generation and utilities</li>
+            <li>Functional programming</li>
+            <li>Lazy (SRFI-45)</li>
+            <li>Match</li>
+            <li>Lightweight testing (SRFI-78)</li>
+          </ul>
         </section>
 
-        <section data-background="#ffcb87">
+        <section data-background="#becd9a">
+          <h2>Energy Sphere</h2>
+          <h3>Extension to Core's infrastructure</h3>
+          <ul>
+            
+          </ul>
         </section>
 
-        <section data-background="#ffcb87">
+        <section data-background="#becd9a">
+          <h2>Fabric Sphere</h2>
+          <h3>Algorithms and Data Structures</h3>
+          <ul>
+            
+          </ul>
         </section>
 
-        <section data-background="#ffcb87">
+        <section data-background="#becd9a">
+          <h2>Fusion Sphere</h2>
+          <h3>Multiplatform development</h3>
+          <ul>
+            
+          </ul>
+        </section>
+
+        <section data-background="#becd9a">
+          <h2>Strings Sphere</h2>
+          <h3>String handling and related</h3>
+          <ul>
+            
+          </ul>
+        </section>
+
+        <section data-background="#becd9a">
+          <h2>Codec Sphere</h2>
+          <h3>Co/decs</h3>
+          <ul>
+            
+          </ul>
+        </section>
+
+        <section data-background="#becd9a">
+          <h2>Crypto Sphere</h2>
+          <h3>Cryptographic algorithms</h3>
+          <ul>
+            
+          </ul>
+        </section>
+
+        <section data-background="#becd9a">
+          <h2>Math Sphere</h2>
+          <h3>Math function</h3>
+          <ul>
+            
+          </ul>
+        </section>
+
+        <section data-background="#becd9a">
+          <h2>Object Sphere</h2>
+          <h3>Object systems</h3>
+          <ul>
+            
+          </ul>
+        </section>
+
+        <section data-background="#becd9a">
+          <h2>FFI spheres</h2>
+          <ul>
+            <li>OpenGL</li>
+            <li>SDL2</li>
+            <li>Cairo</li>
+          </ul>
+        </section>
+
+        <section data-background="#becd9a">
+          <h2>WIP spheres</h2>
+          <ul>
+            <li>Concurrency</li>
+            <li>Database</li>
+            <li>Geometry</li>
+            <li>Logic</li>
+            <li>Net</li>
+            <li>Parsers</li>
+            <li></li>
+          </ul>
+        </section>
+
+        <section data-background="#becd9a">
+          <h2>All of which are<br /><strong> multiplatform</strong></h2>
         </section>
 
       </div>
