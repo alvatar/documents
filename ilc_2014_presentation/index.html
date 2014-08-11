@@ -496,8 +496,19 @@ sudo sspheres install opengl sdl2
         </section>
 
         <section data-background="#ffcb87">
-          <h2>The three elements</h2>
-          <h3>summing up</h3>
+          <h2>Development<br /> strategy</h2>
+          <img alt="asdf" style="border:0;" src="images/mobile_dev.png"/>
+        </section>
+
+        <section data-background="#ffcb87">
+          <h2>Deployment<br /></h2>
+          <img alt="" style="border:0;" src="images/mobile_deployment.png"/>
+        </section>
+
+        <section data-background="#ffcb87">
+          <h2>The three components</h2>
+          <h3>of multiplatform development<h3>
+          <h4>(summing up)</h4>
         </section>
 
         <section data-background="#ffcb87">
@@ -511,34 +522,88 @@ sudo sspheres install opengl sdl2
         </section>
 
         <section data-background="#ffcb87">
+          <h2>Running and compiling</h2>
+          <h3>for the <strong>host</strong> platform</h3>
+          <p>(inspect the three components)</p>
+          <pre><code data-trim contenteditable>
+# Run as interpreted code + loadable objects (when available)
+ssake host:run
+
+# Compile into a single binary
+ssake host:compile
+          </code></pre>
+          </section>
+
+        <section data-background="#ffcb87">
+          <h2>The remote</h2>
+          <h1>REPL</h1>
         </section>
 
         <section data-background="#ffcb87">
+          <h2>Terminal</h2>
+<pre><code data-trim contenteditable>
+# Run the REPL server in a terminal
+sense
+</code></pre>
         </section>
 
         <section data-background="#ffcb87">
+          <h2>Emacs</h2>
+          <h3>Install <strong>sense-emacs</strong></h3>
+          <p>(found in <strong>Energy</strong> sphere's path)</p>
+<pre><code data-trim contenteditable>
+(let ((sense-emacs "/usr/local/Gambit-C/spheres/energy/src/remote/sense-emacs.el" ))
+  (message "Emacs Sense loaded")
+  (load-file sense-emacs))
+</code></pre>
+<pre><code data-trim contenteditable>
+M-x sense
+</code></pre>
         </section>
 
         <section data-background="#ffcb87">
+          <h2>Remote</h2>
+          <h3>running / updating</h3>
+<pre><code data-trim contenteditable>
+(go)
+</code></pre>
         </section>
 
         <section data-background="#ffcb87">
+          <h2>Updating<br /> vs<br /> re-evaluating</h2>
+          <p>in <strong>Emacs</strong></p>
+<pre><code data-trim contenteditable>
+C-c-e
+</code></pre>
         </section>
 
         <section data-background="#ffcb87">
+          <h2>Updating the world<br /> <strong>live!</strong><br /> :)</h2>
+<pre><code data-trim contenteditable>
+TODO
+</code></pre>
         </section>
 
         <section data-background="#ffcb87">
+          <h2>Deployment</h2>
+          <h3>as a <strong>monolithing</strong> and <strong>optimized</strong> app</h3>
+          <p>(see cond-expand and sakefile)</p>
         </section>
 
         <section data-background="#ffcb87">
+          <h2>Development utilities</h2>
         </section>
 
         <section data-background="#ffcb87">
+          <h2>Fusion sphere</h2>
+          <h3>platform-specific modules</h3>
+<pre><code data-trim contenteditable>
+TODO
+</code></pre>
         </section>
 
         <section data-background="#ffcb87">
-          <h2>Inspecting threads</h2>
+          <h2>Thread inspection</h2>
 <pre><code data-trim contenteditable>
 (##spheres-load energy: inspect)
 
@@ -555,13 +620,14 @@ sudo sspheres install opengl sdl2
 </code></pre>
         </section>
 
-        <section data-background="#ffcb87">
-        </section>
+
 
         <!-- APPENDIX -->
 
+
+
         <section data-background="#becd9a">
-          <h1>More Spheres</h1>
+          <h1>The<br /> Spheres</h1>
         </section>
 
         <section data-background="#becd9a">
@@ -665,6 +731,25 @@ sudo sspheres install opengl sdl2
 
         <section data-background="#becd9a">
           <h2>All of which are<br /><strong> multiplatform</strong></h2>
+        </section>
+
+        <section data-background="#becd9a">
+          <h2>Inside a Sphere...</h2>
+          <h4>config.scm</h4>
+          <h4>sakefile.scm</h4>
+          <h4>modules</h4>
+          <h3>...<a href="" target="_blank">How do Spheres work?</a></h3>
+        </section>
+
+
+
+        <!-- END -->
+
+
+
+        <section>
+          <h1>The End</h1>
+          <h2>Thank you!</h2>
         </section>
 
       </div>

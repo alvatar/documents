@@ -80,8 +80,9 @@
   ## 5.5 Deploying as a monolithic app
      * how it works? cond-expand / sakefile
   ## 5.6 Development utilities
-     * Thread inspection
      * fusion iOS utilities (iOS device detection)
+     * Thread inspection
+
      
 
 ==> min 90
