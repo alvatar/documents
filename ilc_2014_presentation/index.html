@@ -147,7 +147,7 @@
         <section data-background="#f97e7e">
           <h2>In Summary</h2>
           <br />
-          <h3><strong>A package manager, project scaffolding tool, task runner and a set of libraries for the Gambit Scheme compiler. <br />
+          <h3><strong>A package manager,<br /> project scaffolding tool,<br /> task runner<br /> and a set of libraries with the Gambit Scheme compiler. <br />
               Multiplatform and mobile.</strong></h3>
         </section>
 
@@ -270,7 +270,7 @@ sudo sspheres install opengl sdl2
         </section>
 
         <section data-background="#becd9a">
-          <h2>Things to take<br /> into account<br />in the REPL...</h2>
+          <h2>Things to take<br /> into account<br />in the <strong>REPL</strong>...</h2>
         </section>
 
         <section data-background="#becd9a">
@@ -278,7 +278,7 @@ sudo sspheres install opengl sdl2
           <ol>
             <li>explicit <strong>let to lambda</strong> expansion</li>
             <li>variable renaming <strong>(alpha conversion)</strong></li>
-            <li>any kind of complex macro/large expansion</li>
+            <li><strong>macro expansion</strong> that move code around</li>
           </ol>       
         </section>
 
@@ -304,7 +304,7 @@ sudo sspheres install opengl sdl2
         </section>
 
         <section data-background="#becd9a">
-          <h2>cond-expand</h2>
+          <h3>cond-expand</h3>
           <h3>should be declared manually</h3>
           <pre><code data-trim contenteditable>
 (##spheres-include core: base-macros)
@@ -368,50 +368,71 @@ sudo sspheres install opengl sdl2
 
         <section data-background="#febdff">
           <h2>Sfusion</h2>
-          <p>Usage</p>
+<pre>
+# Display help
+sfusion
+
+# List available generators
+sfusion generators
+
+# List available target platforms for a generator
+sfusion targets minimal
+</pre>
         </section>
 
         <section data-background="#febdff">
           <h2>Creating a <strong>minimal</strong> project</h2>
+<pre>
+# Run SFusion with the following parameters:
+
+sfusion new -g minimal my-project
+</pre>
         </section>
 
         <section data-background="#febdff">
-          <h2>Ssake</h2>
-          <p>Usage</p>
-        </section>
+          <h2>common <strong>ssake</strong><br />tasks</h2>
+          <pre>
+# Run default task
+ssake
 
-        <section data-background="#febdff">
-          <h2>common tasks</h2>
-          <ul>
-            <li>ssake</li>
-            <li>ssake host:run</li>
-            <li>ssake host:compile</li>
-          </ul>
+# Run interpreted source code (and load dependencies)
+ssake host:run
+
+# Compile as a single executable
+ssake host:compile</pre>
         </section>
 
         <section data-background="#febdff">
           <h2>Adding dependencies</h2>
-          <h3>config.scm</h3>
+          <p>in <strong>config.scm</strong></p>
           <table>
             <tr>
               <td><strong>include</strong></td>
-              <td>use</td>
+              <td><strong>evals the code, used to make macros available at compile-time and the REPL</strong></td>
             </tr>
             <tr>
               <td>prelude</td>
-              <td>use</td>
+              <td>make the code available only at compilation-time (used for FFI headers)</td>
             </tr>
             <tr>
               <td><strong>load</strong></td>
-              <td>use</td>
+              <td><strong>loads the code (source or object file) or links it, making the procedures available at runtime.</strong></td>
             </tr>
             <tr>
               <td>cc-options</td>
-              <td>use</td>
+              <td>used to define C compilation flags</td>
             </tr>
             <tr>
               <td>ld-options</td>
-              <td>use</td>
+              <td>used to define C linking flags</td>
+            </tr>
+            <tr>
+              <td>asset</td>
+              <td>copy as a project asset, used for mobile (SS v0.9)</td>
+            </tr>
+            <tr>
+              <td>...</td>
+              <td>for new backends and extensions</td>
             </tr>
           </table>
         </section>
@@ -423,14 +444,20 @@ sudo sspheres install opengl sdl2
 
         <section data-background="#febdff">
           <h2>Creating a<br /> minimal <strong>SDL / OpenGL</strong> project</h2>
+<pre>
+# Run SFusion with the following parameters:
+
+sfusion new -g sdl-opengl-minimal visual-project
+</pre>
         </section>
 
         <section data-background="#febdff">
           <h2>Inside the project</h2>
-          <ul>
-            <li>config.scm</li>
-            <li>sakefile.scm</li>
-          </ul>
+          <p><strong>config.scm</strong>: conditional dependencies</p>
+          <p><strong>sakefile.scm</strong>: project building tasks </p>
+          <p><strong>src/</strong>: Scheme sources </p>
+          <p><strong>{platform}/</strong>: platform project, toolchain and native dependencies </p>
+          <p><strong>tools/</strong>: scripts and tools</p>
         </section>
 
         <section data-background="#febdff">
@@ -459,7 +486,7 @@ sudo sspheres install opengl sdl2
         </section>
 
         <section data-background="#febdff">
-          <h2>Moving to mobile...</h2>
+          <h2>Moving to <strong>mobile</strong>...</h2>
         </section>
 
 
@@ -480,7 +507,23 @@ sudo sspheres install opengl sdl2
         </section>
 
         <section data-background="#ffcb87">
-          <h2>Building and Running the app</h2>
+          <h2>Building and Running<br /> the app</h2>
+          <pre>
+# Runs initialization
+ssake android:setup
+
+# Compiles the Android app
+ssake android:compile
+
+# Run the Android app
+ssake android:run
+
+# Install the Android app
+ssake android:install
+
+# Compile, install and run
+ssake android
+</pre>
         </section>
 
         <section data-background="#ffcb87">
@@ -519,6 +562,11 @@ sudo sspheres install opengl sdl2
 
         <section data-background="#ffcb87">
            <h2>Creating an <strong>SDL / OpenGL</strong> project</h2>
+<pre>
+# Run SFusion with the following parameters:
+
+sfusion new -g sdl-opengl my-game
+</pre>
         </section>
 
         <section data-background="#ffcb87">
