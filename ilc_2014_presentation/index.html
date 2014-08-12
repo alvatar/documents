@@ -86,7 +86,7 @@
         </section>
         
         <section data-background="#a9dadb">
-          <h2>Construction of multiplatform projects</h2>
+          <h2>Construction of<br /> multiplatform projects</h2>
           <ul>
             <li>How to handle dependencies</li>
             <li>How to handle platform-specific code</li>
@@ -527,7 +527,7 @@ ssake android
         </section>
 
         <section data-background="#ffcb87">
-          <h2>How it works?</h2>
+          <h2>How it works</h2>
           <h4><strong>sakefile</strong> tasks</h3>
           <h4><strong>templates</strong> and text file generation</h4>
           <h4><strong>cond-expand</strong> features</h4>
@@ -555,9 +555,9 @@ ssake android
         </section>
 
         <section data-background="#ffcb87">
-          <h3><strong>sakefile</strong>.scm</h3>
-          <h3><strong>config</strong>.scm</h3>
-          <h3><strong>cond-expand</strong> features</h3>
+          <h3><strong>sakefile.scm</strong> construction tasks</h3>
+          <h3><strong>config.scm</strong> dependencies</h3>
+          <h3><strong>cond-expand</strong>ed code</h3>
         </section>
 
         <section data-background="#ffcb87">
@@ -737,15 +737,54 @@ ssake host:compile
           <h2>Energy Sphere</h2>
           <h3>Extension to Core's infrastructure</h3>
           <ul>
-            
+            <li>Easy argument processing / Purely functional</li>
+            <li>Basic contracts</li>
+            <li>System error codes</li>
+            <li>Exceptions</li>
+            <li>I/O extensions</li>
+            <li>Let-multiple (SRFI-71)</li>
+            <li>Localization (SRFI-29)</li>
+          </ul>
+        </section>
+
+        <section data-background="#becd9a">
+          <h2>Energy Sphere</h2>
+          <h3>(continuation)</h3>
+          <ul>
+            <li>Logging utilities</li>
+            <li>Profiling utilities</li>
+            <li>Remote debugging / REPL server</li>
+            <li>External representation of data with shared structures (SRFI-38)</li>
+            <li>Micro templating system</li>
+            <li>API for test suites (SRFI-64)</li>
+            <li>Time procedures (SRFI-19)</li>
           </ul>
         </section>
 
         <section data-background="#becd9a">
           <h2>Fabric Sphere</h2>
-          <h3>Algorithms and Data Structures</h3>
+          <h3>Algorithms</h3>
           <ul>
-            
+            <li>Compare procedures (SRFI-67)</li>
+            <li>Eager comprehensions (SRFI-42)</li>
+            <li>List procedures (SRFI-1) + Additional list procedures</li>
+            <li>Reservoir sampling, random selection</li>
+            <li>Shuffle algorithms</li>
+            <li>Sort and Merge algorithms (SRFI-95)</li>
+            <li>Algorithms for Streams (SRFI-41)</li>
+            <li>Algorithms for u8 Vectors</li>
+            <li>Algorithms for Vectors (SRFI-43)</li>
+          </ul>
+        </section>
+
+        <section data-background="#becd9a">
+          <h2>Fabric Sphere</h2>
+          <h3>Data Structures</h3>
+          <ul>
+            <li>Arrays (SRFI-63)</li>
+            <li>Multi-dimensional Arrays (SRFI-25)</li>
+            <li>SRFI-69 compatible table (although Gambit provides it's own tables implementation)</li>
+            <li>Streams (SRFI-41)</li>
           </ul>
         </section>
 
@@ -753,7 +792,9 @@ ssake host:compile
           <h2>Fusion Sphere</h2>
           <h3>Multiplatform development</h3>
           <ul>
-            
+            <li>Mobile support and Sfusion generators</li>
+            <li>Platform-specific modules</li>
+            <li>Remote Spheres module management</li>
           </ul>
         </section>
 
@@ -761,15 +802,19 @@ ssake host:compile
           <h2>Strings Sphere</h2>
           <h3>String handling and related</h3>
           <ul>
-            
+            <li>String library (SRFI-13)</li>
+            <li>Character sets (SRFI-14)</li>
+            <li>String formatting (SRFI-28, SRFI-48)</li>
+            <li>u8 Vector strings</li>
           </ul>
         </section>
 
         <section data-background="#becd9a">
           <h2>Codec Sphere</h2>
-          <h3>Co/decs</h3>
+          <h3>Codecs</h3>
           <ul>
-            
+            <li>base64</li>
+            <li>codec utils</li>
           </ul>
         </section>
 
@@ -777,15 +822,27 @@ ssake host:compile
           <h2>Crypto Sphere</h2>
           <h3>Cryptographic algorithms</h3>
           <ul>
-            
+            <li>AES encryption procedures</li>
+            <li>RSA encryption procedures</li>
+            <li>Message digests: CRC32, MD5, SHA-1, SHA-224, SHA-256</li>
+            <li>Hash-based Message Authentication Code</li>
           </ul>
         </section>
 
         <section data-background="#becd9a">
           <h2>Math Sphere</h2>
-          <h3>Math function</h3>
+          <h3>Math function (WIP)</h3>
           <ul>
-            
+            <li>arithmetics</li>
+            <li>bit-logic</li>
+            <li>combinatorics</li>
+            <li>interpolation</li>
+            <li>intervals</li>
+            <li>matrix</li>
+            <li>numerical</li>
+            <li>polynomial</li>
+            <li>sequences</li>
+            <li>statistics</li>
           </ul>
         </section>
 
@@ -793,7 +850,9 @@ ssake host:compile
           <h2>Object Sphere</h2>
           <h3>Object systems</h3>
           <ul>
-            
+            <li>SRFI-99 records</li>
+            <li>Type-classes</li>
+            <li>Prototype-based object system</li>
           </ul>
         </section>
 
@@ -815,7 +874,6 @@ ssake host:compile
             <li>Logic</li>
             <li>Net</li>
             <li>Parsers</li>
-            <li></li>
           </ul>
         </section>
 
