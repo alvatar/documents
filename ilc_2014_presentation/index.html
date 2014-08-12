@@ -540,7 +540,7 @@ ssake android
 
         <section data-background="#ffcb87">
           <h2>Development<br /> strategy</h2>
-          <img alt="asdf" style="border:0;" src="images/mobile_dev.png"/>
+          <img alt="" style="border:0;" src="images/mobile_dev.png"/>
         </section>
 
         <section data-background="#ffcb87">
@@ -570,29 +570,16 @@ sfusion new -g sdl-opengl my-game
         </section>
 
         <section data-background="#ffcb87">
-          <h2>Running and compiling</h2>
-          <h3>for the <strong>host</strong> platform</h3>
-          <p>(inspect the three components)</p>
-          <pre><code data-trim contenteditable>
-# Run as interpreted code + loadable objects (when available)
-ssake host:run
-
-# Compile into a single binary
-ssake host:compile
-          </code></pre>
-          </section>
-
-        <section data-background="#ffcb87">
           <h2>The remote</h2>
           <h1>REPL</h1>
         </section>
 
         <section data-background="#ffcb87">
           <h2>Terminal</h2>
-<pre><code data-trim contenteditable>
+<pre>
 # Run the REPL server in a terminal
 sense
-</code></pre>
+</pre>
         </section>
 
         <section data-background="#ffcb87">
@@ -628,14 +615,46 @@ C-c-e
         <section data-background="#ffcb87">
           <h2>Updating the world<br /> <strong>live!</strong><br /> :)</h2>
 <pre><code data-trim contenteditable>
-TODO
+;; Create a new copy of the world
+(define new-world (get-world-copy))
+
+;; Rebuild the world
+(define rebuild-world
+ (world-update new-world 'sprites (cdr (world-sprites new-world))))
+
+;; Inject the newly created world
+(inject-world! rebuild-world)
 </code></pre>
         </section>
 
         <section data-background="#ffcb87">
+          <h2>Running and compiling</h2>
+          <h3>for the <strong>host</strong> platform</h3>
+          <p>(inspect the three components)</p>
+          <pre><code data-trim contenteditable>
+# Run as interpreted code + loadable objects (when available)
+ssake host:run
+
+# Compile into a single binary
+ssake host:compile
+          </code></pre>
+          </section>
+
+        <section data-background="#ffcb87">
           <h2>Deployment</h2>
-          <h3>as a <strong>monolithing</strong> and <strong>optimized</strong> app</h3>
-          <p>(see cond-expand and sakefile)</p>
+          <h3>as a <strong>monolithic</strong> and <strong>optimized</strong> app</h3>
+          <p>(see cond-expands and sakefile)</p>
+          <pre><code data-trim contenteditable>
+(if #f ;; <--- #t to compile as a single app executable
+      ;; Compile all modules within the app executable
+      (fusion#ios-compile-app 'app
+                              arch: 'i386 ;; armv7 / armv7s
+                              target: 'debug
+                              cond-expand-features: '(debug static)
+                              compiler-options: '(debug)
+                              cc-options: (list "-w"
+[...]
+          </code></pre>
         </section>
 
         <section data-background="#ffcb87">
@@ -646,12 +665,17 @@ TODO
           <h2>Fusion sphere</h2>
           <h3>platform-specific modules</h3>
 <pre><code data-trim contenteditable>
-TODO
+;; iOS device type Id
+(ios-device)
+
+;; iOS device string description
+(ios-device-description)
 </code></pre>
         </section>
 
         <section data-background="#ffcb87">
           <h2>Thread inspection</h2>
+          <h4>Host environment example</h4>
 <pre><code data-trim contenteditable>
 (##spheres-load energy: inspect)
 
@@ -668,6 +692,24 @@ TODO
 </code></pre>
         </section>
 
+        <section data-background="#ffcb87">
+          <h2>Thread inspection</h2>
+          <h4>Remote environment example</h4>
+<pre><code data-trim contenteditable>
+;; Add (energy: inspect) dependency
+
+;; List the threads
+,(s t)
+
+;; Inspect a thread (substitute with the proper serial number from the list)
+(inspect-thread {number})
+;; ...
+
+;; Once identified
+,(v {number})
+
+</code></pre>
+        </section>
 
 
         <!-- APPENDIX -->
